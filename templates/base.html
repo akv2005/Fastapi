@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "viewport">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% block head %}{% endblock %}
+    <title>MOEX</title>
+</head>
+<body>
+    <nav class="flex jastify-between text-3xl my3">
+        <ul class="flex gap-5 mr-10">
+            <li> биржа </li>
+        </ul>
+    </nav>
+    <hr>
+    <div id="content">
+    {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
