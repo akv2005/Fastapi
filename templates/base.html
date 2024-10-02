@@ -11,12 +11,16 @@
 <body>
     <nav class="flex jastify-between text-3xl my3">
         <ul class="flex gap-5 mr-10">
-            <li> биржа </li>
+            <li> Московская Биржа </li>
         </ul>
     </nav>
     <hr>
+
+
+    <hr>
     <div id="content">
     {% block content %}{% endblock %}
+           <img src="{{url_for('static', path='SBER_24_RSI_chart.png') }}" alt="Стонкс">
     </div>
 </body>
 </html>
