@@ -8,12 +8,8 @@
     <title>МОЕХ</title>
 </head>
 <body>
-<li>
-    Добро пожаловать в инструмент получения и построения графиков биржевых данных.
-    Вот несколько примеров биржевых тикеров, которые вы можете рассмотреть: SNGS
-    Общие периоды времени для данных о запасах включают: 1д
-    <br>
-</li>
+
+ <br>
     <form >
     <lable for='ticker'>Введите тикер акции :</lable>
     <input type="text" id="ticker" name="ticker" maxlength="8" required>
@@ -26,5 +22,9 @@
         <br>
     <button type="submit">Отправить форму</button>
     </form>
+
+    <div>
+        {{ticker}}
+    </div>
 </body>
 </html>

@@ -9,18 +9,19 @@
     <title>MOEX</title>
 </head>
 <body>
-    <nav class="flex jastify-between text-3xl my3">
+    <nav class="flex jastify-between text-5xl my3">
         <ul class="flex gap-5 mr-10">
             <li> Московская Биржа </li>
         </ul>
     </nav>
     <hr>
+<li class="flex jastify-between text-3xl my3">
+    Добро пожаловать в инструмент получения и построения графиков биржевых данных.
+</li>
+ <hr>
+<a href="/pages/input" class="flex jastify-between text-3xl my3">
+    <botton> введите тикер и период </botton>
+</a>
 
-
-    <hr>
-    <div id="content">
-    {% block content %}{% endblock %}
-           <img src="{{url_for('static', path='SBER_24_RSI_chart.png') }}" alt="Стонкс">
-    </div>
 </body>
 </html>

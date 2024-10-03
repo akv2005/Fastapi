@@ -9,11 +9,8 @@ router =APIRouter(
 templates = Jinja2Templates(directory="templates")
 
 @router.get("/input")
-def get_input_page( request: Request, ticker, period, threshold):
-    return templates.TemplateResponse("input.html", {"request": request,
-                                                     "ticker": ticker,
-                                                     "period": period,
-                                                     "threshold": threshold})
+def get_input_page( request: Request):
+    return templates.TemplateResponse("input.html", {"request": request})
 
 @router.get("/base")
 def get_base_page(request: Request):
