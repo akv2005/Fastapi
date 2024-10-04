@@ -24,5 +24,6 @@ def get_html(request: Request):
      return templates.TemplateResponse("base.html", {"request": request})
 
 
+
 app.include_router(router_pages)
 
