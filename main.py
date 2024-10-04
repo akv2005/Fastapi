@@ -17,7 +17,7 @@ app = FastAPI(
 )
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
-m = moex.main()
+#m = moex.main()
 
 @app.get('/')
 def get_html(request: Request):
