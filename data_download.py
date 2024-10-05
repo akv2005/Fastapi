@@ -81,4 +81,5 @@ def calculate_macd(data, short_window=12, long_window=26, signal_window=9):
     data['EMA_long'] = data['close'].ewm(span=long_window, adjust=False).mean()
     data['MACD'] = data['EMA_short'] - data['EMA_long']
     data['Signal'] = data['MACD'].ewm(span=signal_window, adjust=False).mean()
+
     return data
