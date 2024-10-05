@@ -8,12 +8,12 @@ import datetime
 
 logging.basicConfig(level=logging.INFO, filemode='w', filename='py.log',
                     format='%(asctime)s | %(levelname)s | %(message)s')
-def fetch_stock_data(ticker, start_date, period):
+def fetch_stock_data(ticker, period):
     security = ticker
 #    s_date = start_date
     s_date = '2024-08-01'  # Начальная дата
     end_date = datetime.datetime.today()  # Конечная дата
-    interval = '24'  #'24'  Интервал: '1d', '1h', '30m' и т.д.
+    interval = period  #'24'  Интервал: '1d', '1h', '30m' и т.д.
     with requests.Session() as session:
         stock = apimoex.get_board_candles(session, security=security, start=s_date, end=end_date, interval = interval)
         data = pd.DataFrame(stock)

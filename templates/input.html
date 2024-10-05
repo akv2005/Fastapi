@@ -8,20 +8,30 @@
     <title>МОЕХ</title>
 </head>
 <body>
-
+<li class="flex jastify-between text-3xl my3">
+    <p style="color: red;">   Добро пожаловать в инструмент получения и построения графиков биржевых данных.  </p>
+    <p>    Введите тикер акции (например, SNGSP для Сургутнефтегаза, GAZP газпром, SBER сбербанк)  </p>
+    <p>  Введите период для данных (например, 24 для одного дня, 31 для одного месяца)  </p>
+    <p>  Введите порог колебания акций относительно средней цены закрытия в процентах (по умолчанию 20%) </p>
+</li>
  <br>
-    <form >
-    <lable for='ticker'>Введите тикер акции :</lable>
-    <input type="text" id="ticker" name="ticker" maxlength="8" required>
-        <br>
-    <lable for='period'>Введите период для данных (например, '31' для одного месяца) :</lable>
-    <input type="int" id="period" name="period"   required>
-        <br>
-    <lable for='threshold'>Введите порог колебания акций относительно средней цены закрытия в процентах :</lable>
-    <input type="int" id="threshold" name="threshold" maxlength="2" required>
-        <br>
-    <button type="submit">Отправить форму</button>
+<h2>Форма ввода</h2>
+    <form action="postdata" method="post">
+        <p>
+            ticker:<br>
+            <input name="ticker" />
+        </p>
+        <p>
+            period:<br>
+            <input name="period" type="number" />
+        </p>
+        <p>
+            threshold:<br>
+            <input name="threshold" type="number" />
+        </p>
+        <input type="submit" value="Send" />
     </form>
+
 
     <div>
         {{ticker}}
