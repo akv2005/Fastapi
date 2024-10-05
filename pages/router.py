@@ -28,3 +28,5 @@ def postdata(request: Request,ticker=Form(), period = Form(), threshold = Form()
     return templates.TemplateResponse("output.html", {"request": request, 'RSI': RSI, 'Stock' :Stock, 'MCAD': MCAD})
 
 
+
+
