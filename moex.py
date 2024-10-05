@@ -20,6 +20,7 @@ def main(ticker, period, threshold= 20):
             print(f"Нет данных для тикера '{ticker}'. Пожалуйста, проверьте правильность введенного тикера и запрашиваемого перода времени")
             break  # Возврат к началу цикла для повторного ввода
 
+
         # Добавление скользящего среднего, RSI, MACD
         stock_data = dd.add_moving_average(stock_data) # Добавляем расчет Скользящего среднего
         stock_data = dd.calculate_rsi(stock_data)  # Добавляем расчет RSI

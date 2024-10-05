@@ -27,3 +27,4 @@ def postdata(request: Request,ticker=Form(), period = Form(), threshold = Form()
     Stock = f"/static/{ticker}_{period}_stock_price_chart.png"
     return templates.TemplateResponse("output.html", {"request": request, 'RSI': RSI, 'Stock' :Stock, 'MCAD': MCAD})
 
+

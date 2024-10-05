@@ -67,3 +67,4 @@ def export_data_to_csv(data, filename):
     """
     logging.info(f"Таблица сохраена как {filename}.csv")
     return data.to_csv(f'./static/{filename}.csv')
+
