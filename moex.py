@@ -3,9 +3,9 @@ from pydantic.v1 import StrictBoolError
 import data_download as dd
 import data_plotting as dplt
 
-def main(ticker, period, threshold= 20):
+def main(ticker, period, start_date):
     print("Добро пожаловать в инструмент получения и построения графиков биржевых данных.")
-
+    threshold = 20
     while True:
         # ticker = input("Введите тикер акции (например, «SNGSP» для Сургутнефтегаза Inc): ")
         # start_date = input("Введите начальную дату например 2024-08-01): ")
@@ -13,7 +13,7 @@ def main(ticker, period, threshold= 20):
         # threshold = int(input(
         #     'Введите порог колебания акций относительно средней цены закрытия в процентах (по умолчанию 20%) ').strip() or '20'
         # Попытка получение данных об акции
-        stock_data = dd.fetch_stock_data(ticker, period)
+        stock_data = dd.fetch_stock_data(ticker, period, start_date)
 
         # Проверка наличия данных о акции
         if stock_data.empty:
@@ -33,8 +33,8 @@ def main(ticker, period, threshold= 20):
         print(dd.calculate_and_display_average_price(stock_data))
 
         # Расчет процента колебаний
-        # if dd.notify_if_strong_fluctuations(stock_data, threshold) is not None:
-        #     print(dd.notify_if_strong_fluctuations(stock_data, threshold))
+        if dd.notify_if_strong_fluctuations(stock_data, threshold) is not None:
+            print(dd.notify_if_strong_fluctuations(stock_data, threshold))
 
         break  # Выход из цикла, если данные успешно получены
 

@@ -8,10 +8,10 @@ import datetime
 
 logging.basicConfig(level=logging.INFO, filemode='w', filename='py.log',
                     format='%(asctime)s | %(levelname)s | %(message)s')
-def fetch_stock_data(ticker, period):
+def fetch_stock_data(ticker, period, start_date):
     security = ticker
 #    s_date = start_date
-    s_date = '2024-08-01'  # Начальная дата
+    s_date = start_date  # Начальная дата
     end_date = datetime.datetime.today()  # Конечная дата
     interval = period  #'24'  Интервал: '1d', '1h', '30m' и т.д.
     with requests.Session() as session:
@@ -33,21 +33,24 @@ def calculate_and_display_average_price(data):
     return avg
 
 
-def notify_if_strong_fluctuations(data, threshold=20):
+def notify_if_strong_fluctuations(data, threshold):
     """
-
     :param data: Принимает БД с данными по запрошенной акции
     :param threshold: Принимает пороговое значение колебаний в процентах от средней цены цены закрытия за указанный период
     :return: Возвращает предупреждение, если цена закрытия акций за заданный перуд изменяется больше значения threshold
     """
     min_price = data['close'].min()
     max_price = data['close'].max()
-
+    threshold = 30
     dif = max_price - min_price
     percent = dif / (calculate_and_display_average_price(data) / 100)
     if percent >= threshold:
         logging.warning('высокий уровень колебания акций!')
         return 'Компания не стабильна, будьте внимательны!'
+    else:
+        logging.info(' уровень колебания акций в норме')
+        return 'компания стабильна'
+
 
 
 def calculate_rsi(data, window=14):
