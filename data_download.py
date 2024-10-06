@@ -83,3 +83,11 @@ def calculate_macd(data, short_window=12, long_window=26, signal_window=9):
     data['Signal'] = data['MACD'].ewm(span=signal_window, adjust=False).mean()
 
     return data
+
+def LastNlines(fname):
+    with open(fname) as file:
+        ll = "     "
+        for line in (file.readlines()[-2:]):
+            ll = ll + line
+            print(ll, end ='')
+    return ll
