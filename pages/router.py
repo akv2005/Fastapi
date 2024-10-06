@@ -1,7 +1,6 @@
-
 from fastapi import APIRouter, Request, Form, status, HTTPException
 from fastapi.templating import Jinja2Templates
-
+from pathlib import Path
 from moex import main
 
 router =APIRouter(
@@ -21,9 +20,15 @@ def postdata(request: Request,ticker=Form(), period = Form(), start_date= Form()
     MCAD = f"/static/{ticker}_{period}_MACD.png"
     RSI = f"/static/{ticker}_{period}_RSI.png"
     Stock = f"/static/{ticker}_{period}_stock_price_chart.png"
-    # if main.st is None:
-    #     return HTTPException(
-    #         status_code=status.HTTP_404_NOT_FOUND, detail='Ticker was not found')
-    return templates.TemplateResponse("output.html", {"request": request, 'RSI': RSI, 'Stock' :Stock, 'MCAD': MCAD})
+    fff = Path(f"static/{ticker}_{period}_MACD.png")
+    if fff.exists() is False:
+        content = {"request": request, 'ticker': ticker}
+        return templates.TemplateResponse("output_error.html", content)
 
+    content = {"request": request, 'RSI': RSI, 'Stock' :Stock, 'MCAD': MCAD}
 
+    return templates.TemplateResponse("output.html", content)
+
+@router.delete("/delete")
+def get_delete_page(request: Request):
+    return templates.TemplateResponse("search.html", {"request": request})

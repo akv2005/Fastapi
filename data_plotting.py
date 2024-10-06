@@ -7,6 +7,7 @@ logging.basicConfig(level=logging.INFO, filemode='w', filename='py.log',
 
 
 def create_and_save_plot(data, ticker, period, filename=None):
+
     plt.figure(figsize=(10, 6))
 
     if 'begin' not in data:

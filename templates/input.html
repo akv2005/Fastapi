@@ -11,8 +11,9 @@
 <li class="flex jastify-between text-3xl my3">
     <p style="color: red;">   Добро пожаловать в инструмент получения и построения графиков биржевых данных.  </p>
     <p>    Введите тикер акции (например, SNGSP для Сургутнефтегаза, GAZP газпром, SBER сбербанк)  </p>
-    <p>  Введите период для данных (например, 24 для одного дня, 31 для одного месяца)  </p>
-    <p>  Введите порог колебания акций относительно средней цены закрытия в процентах (по умолчанию 20%) </p>
+    <p>    Введите начальную дату </p>
+    <p>  Введите период для данных (1 - 1 минута,   10 - 10 минут,   60 - 1 час,   24 - 1 день,   7 - 1 неделя,  31 - 1 месяц )</p>
+
 </li>
  <br>
 <h2>Введите  данные для получения информации об эмитенте</h2>
@@ -21,15 +22,20 @@
             ticker:
             <input name="ticker" />
         </p>
-        <p>
-            period:
-            <input name="period" type="number"/>
-        </p>
+
         <p>
             Начальная дата:
             <input name="start_date" type="date" />
         </p>
-        <input type="submit" value="Send" />
+        <p>
+            Период:
+            <input name="period" type="submit" value="1" />
+            <input name="period" type="submit" value="10" />
+            <input name="period" type="submit" value="60" />
+            <input name="period" type="submit" value="24" />
+            <input name="period" type="submit" value="7" />
+            <input name="period"  type="submit" value="31" />
+            </p>
     </form>
 
 </body>
