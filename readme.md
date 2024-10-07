@@ -63,7 +63,7 @@
 
 - calculate_macd(data, short_window=12, long_window=26, signal_window=9):  Рассчитывает Moving Average Convergence Divergence (MACD) для данных о ценах акций.
 
-- LastNlines(fname):   Формирует строку об средней цены за период и волатильности эмитента
+- LastNlines(fname):   Формирует строку о средней цене за период и волатильности эмитента
 
 
 2. moex.py:
