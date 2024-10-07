@@ -86,8 +86,9 @@ def calculate_macd(data, short_window=12, long_window=26, signal_window=9):
 
 def LastNlines(fname):
     with open(fname) as file:
-        ll = "     "
+        ll = ""
+        lll = "------"
         for line in (file.readlines()[-2:]):
-            ll = ll + line
+            ll = ll + lll + line[30:]
             print(ll, end ='')
     return ll

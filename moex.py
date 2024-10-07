@@ -1,5 +1,3 @@
-from pydantic.v1 import StrictBoolError
-
 import data_download as dd
 import data_plotting as dplt
 
@@ -7,9 +5,6 @@ def main(ticker, period, start_date):
     print("Добро пожаловать в инструмент получения и построения графиков биржевых данных.")
     threshold = 20
     while True:
-        # threshold = int(input(
-        #     'Введите порог колебания акций относительно средней цены закрытия в процентах (по умолчанию 20%) ').strip() or '20'
-        # Попытка получение данных об акции
 
         stock_data = dd.fetch_stock_data(ticker, period, start_date)
 

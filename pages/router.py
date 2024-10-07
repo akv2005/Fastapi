@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request, Form, status, HTTPException
+from fastapi import APIRouter, Request, Form
 from fastapi.templating import Jinja2Templates
 from pathlib import Path
 from moex import main
@@ -28,7 +28,7 @@ def postdata(request: Request,ticker=Form(), period = Form(), start_date= Form()
         content = {"request": request, 'ticker': ticker}
         return templates.TemplateResponse("output_error.html", content)
 
-    content = {"request": request, 'RSI': RSI, 'Stock' :Stock, 'MCAD': MCAD, 'info_': info_}
+    content = {"request": request, 'RSI': RSI, 'Stock' :Stock, 'MCAD': MCAD, 'info_': info_, 'period': period,}
 
     return templates.TemplateResponse("output.html", content)
 
