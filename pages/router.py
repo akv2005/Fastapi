@@ -21,7 +21,7 @@ def postdata(request: Request,ticker=Form(), period = Form(), start_date= Form()
     MCAD = f"/static/{ticker}_{period}_MACD.png"
     RSI = f"/static/{ticker}_{period}_RSI.png"
     Stock = f"/static/{ticker}_{period}_stock_price_chart.png"
-    info_ = LastNlines('py.log')
+    info_ = LastNlines('py.log')   #  Проверка на наличие созданного файла
     fff = Path(f"static/{ticker}_{period}_MACD.png")
 
     if fff.exists() is False:
@@ -32,6 +32,6 @@ def postdata(request: Request,ticker=Form(), period = Form(), start_date= Form()
 
     return templates.TemplateResponse("output.html", content)
 
-@router.delete("/delete")
-def get_delete_page(request: Request):
-    return templates.TemplateResponse("search.html", {"request": request})
+# @router.delete("/delete")
+# def get_delete_page(request: Request):
+#     return templates.TemplateResponse("search.html", {"request": request})
