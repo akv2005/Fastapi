@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.INFO, filemode='w', filename='py.log',
 
 
 def create_and_save_plot(data, ticker, period, filename=None):
-
+    st_data = (data['begin'])[0]
     plt.figure(figsize=(10, 6))
 
     if 'begin' not in data:
@@ -25,7 +25,7 @@ def create_and_save_plot(data, ticker, period, filename=None):
         plt.plot(data['begin'], data['Moving_Average'], label='Moving Average')
 
     plt.title(f"{ticker} Цена акций с течением времени")
-#    plt.xlabel("Дата")
+    plt.xlabel(f"Начальная дата {st_data}")
     plt.ylabel("Цена")
     plt.legend()
     plt.tight_layout()
@@ -37,7 +37,7 @@ def create_and_save_plot(data, ticker, period, filename=None):
     plt.axhline(70, linestyle='--', alpha=0.5, color='red')
     plt.axhline(30, linestyle='--', alpha=0.5, color='green')
     plt.title(f"RSI для {ticker}")
-#    plt.xlabel("Дата")
+    plt.xlabel(f"Начальная дата {st_data}")
     plt.ylabel("RSI")
     plt.legend()
     plt.savefig(f"./static/{ticker}_{period}_RSI.png")
@@ -48,7 +48,7 @@ def create_and_save_plot(data, ticker, period, filename=None):
     plt.plot(data.index, data['MACD'], label='MACD', color='blue')
     plt.plot(data.index, data['Signal'], label='Signal Line', color='orange')
     plt.title(f"MACD для {ticker}")
-#    plt.xlabel("Дата")
+    plt.xlabel(f"Начальная дата {st_data}")
     plt.ylabel("MACD")
     plt.legend()
     plt.savefig(f"./static/{ticker}_{period}_MACD.png")

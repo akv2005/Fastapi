@@ -43,11 +43,12 @@ def notify_if_strong_fluctuations(data, threshold):
     threshold = 20
     dif = max_price - min_price
     percent = dif / (calculate_and_display_average_price(data) / 100)
+    print(f"min: {min_price}, max:{max_price}")
     if percent >= threshold:
-        logging.warning('высокий уровень колебания акций!')
+        logging.warning(f'высокий уровень колебания акций!   {percent} %')
         return 'Компания не стабильна, будьте внимательны!'
     else:
-        logging.info( f"уровень колебания эмитента  в пределах {threshold}%")
+        logging.info( f"уровень колебания эмитента  в пределах   {percent} %")
         return 'эмитент стабилен'
 
 
@@ -86,9 +87,9 @@ def calculate_macd(data, short_window=12, long_window=26, signal_window=9):
 
 def LastNlines(fname): # Формирует строку об средней цены за период и волатильности эмитента
     with open(fname) as file:
-        ll = ""
-        lll = "------"
+        ll = "*"
+        lll = "..."
         for line in (file.readlines()[-2:]):
-            ll = ll + lll + line[30:]
+            ll = ll + 3*lll + line[line.find('|'):]
             print(ll, end ='')
     return ll

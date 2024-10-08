@@ -24,11 +24,27 @@ def postdata(request: Request,ticker=Form(), period = Form(), start_date= Form()
     info_ = LastNlines('py.log')   #  Проверка на наличие созданного файла
     fff = Path(f"static/{ticker}_{period}_MACD.png")
 
+    if period == "1":
+        interval = '1 минута'
+    elif period == "10":
+        interval = '10 минут'
+    elif period == "60":
+        interval = '1 час'
+    elif period == "24":
+        interval = '1 день'
+    elif period == "7":
+        interval = '1 неделя'
+    elif period == "31":
+        interval = '1 месяц'
+
     if fff.exists() is False:
         content = {"request": request, 'ticker': ticker}
         return templates.TemplateResponse("output_error.html", content)
 
-    content = {"request": request, 'RSI': RSI, 'Stock' :Stock, 'MCAD': MCAD, 'info_': info_, 'period': period,}
+    content = {"request": request, 'RSI': RSI, 'Stock' :Stock,
+               'MCAD': MCAD, 'info_': info_,
+               'period': period, 'interval': interval,
+               }
 
     return templates.TemplateResponse("output.html", content)
 
