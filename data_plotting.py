@@ -55,10 +55,6 @@ def create_and_save_plot(data, ticker, period, filename=None):
     logging.info(f"График MACD сохранен как {ticker}_{period}_MACD_chart.png")
 
 
-    if filename is None:
-        filename = f"./static/{ticker}_{period}_stock_price_chart.png"
-    plt.savefig(filename)
-    logging.info(f"График сохранен как {filename}")
 def export_data_to_csv(data, filename):
     """
 
