@@ -21,8 +21,8 @@ def postdata(request: Request,ticker=Form(), period = Form(), start_date= Form()
     MCAD = f"/static/{ticker}_{period}_MACD.png"
     RSI = f"/static/{ticker}_{period}_RSI.png"
 #    Stock = f"/static/{ticker}_{period}_stock_price_chart.png"
-    info_ = LastNlines('py.log')   #  Проверка на наличие созданного файла
-    fff = Path(f"static/{ticker}_{period}_MACD.png")
+    info_ = LastNlines('py.log')   # Выбор двух последних строк py.log
+    fff = Path(f"static/{ticker}_{period}_MACD.png") #  Проверка на наличие созданного файла
 
     if period == "1":
         interval = '1 минута'
