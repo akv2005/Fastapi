@@ -20,9 +20,12 @@ def postdata(request: Request,ticker=Form(), period = Form(), start_date= Form()
     main(ticker, period, start_date)
     MCAD = f"/static/{ticker}_{period}_MACD.png"
     RSI = f"/static/{ticker}_{period}_RSI.png"
-#    Stock = f"/static/{ticker}_{period}_stock_price_chart.png"
-    info_ = LastNlines('py.log')   # Выбор двух последних строк py.log
+
+    info_ = LastNlines('py.log')    # Выбор двух последних строк py.log
     fff = Path(f"static/{ticker}_{period}_MACD.png") #  Проверка на наличие созданного файла
+    if fff.exists() is False:
+        content = {"request": request, 'ticker': ticker}
+        return templates.TemplateResponse("output_error.html", content)
 
     if period == "1":
         interval = '1 минута'
@@ -37,10 +40,6 @@ def postdata(request: Request,ticker=Form(), period = Form(), start_date= Form()
     elif period == "31":
         interval = '1 месяц'
 
-    if fff.exists() is False:
-        content = {"request": request, 'ticker': ticker}
-        return templates.TemplateResponse("output_error.html", content)
-
     content = {"request": request, 'RSI': RSI,
                'MCAD': MCAD, 'info_': info_,
                'period': period, 'interval': interval,
@@ -48,6 +47,3 @@ def postdata(request: Request,ticker=Form(), period = Form(), start_date= Form()
 
     return templates.TemplateResponse("output.html", content)
 
-# @router.delete("/delete")
-# def get_delete_page(request: Request):
-#     return templates.TemplateResponse("search.html", {"request": request})
