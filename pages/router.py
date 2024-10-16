@@ -27,18 +27,11 @@ def postdata(request: Request,ticker=Form(), period = Form(), start_date= Form()
         content = {"request": request, 'ticker': ticker}
         return templates.TemplateResponse("output_error.html", content)
 
-    if period == "1":
-        interval = '1 минута'
-    elif period == "10":
-        interval = '10 минут'
-    elif period == "60":
-        interval = '1 час'
-    elif period == "24":
-        interval = '1 день'
-    elif period == "7":
-        interval = '1 неделя'
-    elif period == "31":
-        interval = '1 месяц'
+    int_ = {'1':'1 минута', '10': '10 минут', '60':'1 час', '24':'1 день', '7':'1 неделя', '31': '1 месяц'}
+    for key in int_:
+        if key == period:
+            interval = int_[key]
+
 
     content = {"request": request, 'RSI': RSI,
                'MCAD': MCAD, 'info_': info_,
