@@ -1,3 +1,6 @@
+import os
+import shutil
+
 from fastapi import APIRouter, Request, Form
 from fastapi.templating import Jinja2Templates
 from pathlib import Path
@@ -40,3 +43,8 @@ def postdata(request: Request,ticker=Form(), period = Form(), start_date= Form()
 
     return templates.TemplateResponse("output.html", content)
 
+@router.get("/delete")
+def get_delete_page(request: Request):
+    shutil.rmtree('./static/')
+    os.mkdir('./static')
+    return templates.TemplateResponse("base.html", {"request": request})
