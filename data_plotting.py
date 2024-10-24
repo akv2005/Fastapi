@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 import logging
 
@@ -9,7 +8,8 @@ logging.basicConfig(level=logging.INFO, filemode='w', filename='py.log',
 
 def create_and_save_plot(data, ticker, period, filename=None):
     st_data = (data['begin'])[0]
-    plt.figure(figsize=(10, 6))
+    plt.style.use('seaborn-v0_8-dark-palette')
+    plt.figure(figsize=(14, 10))
 
     if 'begin' not in data:
         if pd.api.types.is_datetime64_any_dtype(data.index):
@@ -37,31 +37,31 @@ def create_and_save_plot(data, ticker, period, filename=None):
 
 
     # График RSI
-    plt.figure(figsize=(10, 6))
-    plt.plot(data.index, data['RSI'], label='RSI', color='blue')
+    plt.figure(figsize=(16, 10))
+    plt.plot(data['begin'], data['RSI'], label='RSI', color='blue')
     plt.axhline(70, linestyle='--', alpha=0.5, color='red')
     plt.axhline(30, linestyle='--', alpha=0.5, color='green')
     plt.title(f"RSI для {ticker}")
-    plt.xlabel(f"Начальная дата {st_data}")
+    plt.xlabel(("Дата"))
     plt.ylabel("RSI")
     plt.legend()
     plt.savefig(f"./static/{ticker}_{period}_RSI.png")
     logging.info(f"График RSI сохранен как {ticker}_{period}_RSI_chart.png")
 
     # График MACD
-#    plt.figure(figsize=(10, 6))
-    plt.plot(data.index, data['MACD'], label='MACD', color='blue')
-    plt.plot(data.index, data['Signal'], label='Signal Line', color='orange')
+    plt.figure(figsize=(16, 10))
+    plt.plot(data['begin'], data['MACD'], label='MACD', color='blue')
+    plt.plot(data['begin'], data['Signal'], label='Signal Line', color='orange')
     plt.title(f"MACD для {ticker}")
-    plt.xlabel(f"Начальная дата {st_data}")
+    plt.xlabel("Дата")
     plt.ylabel("MACD")
     plt.legend()
     plt.savefig(f"./static/{ticker}_{period}_MACD.png")
     logging.info(f"График MACD сохранен как {ticker}_{period}_MACD_chart.png")
 
-#    plt.figure(figsize=(10, 6))
-    plt.plot(data.index, data['close'], label='Close Price')
-    plt.fill_between(data.index,
+    plt.figure(figsize=(16, 10))
+    plt.plot(data['begin'], data['close'], label='Close Price')
+    plt.fill_between(data['begin'],
                      data['close'] - data['Std_Dev'],
                      data['close'] + data['Std_Dev'],
                      color='gray', alpha=0.3, label='Std Dev')
