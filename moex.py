@@ -19,11 +19,13 @@ def main(ticker, period, start_date):
         stock_data = dd.add_moving_average(stock_data) # Добавляем расчет Скользящего среднего
         stock_data = dd.calculate_rsi(stock_data)  # Добавляем расчет RSI
         stock_data = dd.calculate_macd(stock_data)  # Добавляем расчет MACD
+        stock_data = dd.calculate_and_display_std_dev(stock_data)  # Добавляем рассчет стандартного отклонения цены закрытия
         print(stock_data,'stock_data')
 
         # Отрисовка графика и сохранение БД в csv-файл
         dplt.create_and_save_plot(stock_data, ticker, period)
         dplt.export_data_to_csv(stock_data, f'{ticker}_{period}')
+#        dplt.export_data_to_html(stock_data, f'{ticker}_{period}')
         print(dd.calculate_and_display_average_price(stock_data))
 
         # Расчет процента колебаний

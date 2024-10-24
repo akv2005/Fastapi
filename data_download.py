@@ -82,7 +82,6 @@ def calculate_macd(data, short_window=12, long_window=26, signal_window=9):
     data['EMA_long'] = data['close'].ewm(span=long_window, adjust=False).mean()
     data['MACD'] = data['EMA_short'] - data['EMA_long']
     data['Signal'] = data['MACD'].ewm(span=signal_window, adjust=False).mean()
-
     return data
 
 def LastNlines(fname): # Формирует строку об средней цены за период и волатильности эмитента
@@ -93,3 +92,15 @@ def LastNlines(fname): # Формирует строку об средней ц�
             ll = ll + 3*lll + line[line.find('|'):]
             print(ll, end ='')
     return ll
+
+def calculate_and_display_std_dev(data):
+    """
+    Рассчитывает стандартное отклонение цен закрытия и добавляет его в DataFrame.
+
+    :param data: DataFrame с историческими данными о ценах акций
+    :return: DataFrame с добавленным столбцом 'Std_Dev'
+    """
+    std_dev = data['close'].std()
+    data['Std_Dev'] = std_dev
+    logging.info(f'Стандартное отклонение цен закрытия акций: {std_dev}')
+    return data

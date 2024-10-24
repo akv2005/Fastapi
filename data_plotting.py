@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import logging
 
@@ -29,6 +30,10 @@ def create_and_save_plot(data, ticker, period, filename=None):
     plt.ylabel("Цена")
     plt.legend()
     plt.tight_layout()
+    if filename is None:
+        filename = f"./static/{ticker}_{period}_stock_price_chart.png"
+    plt.savefig(filename)
+    logging.info(f"График сохранен как {filename}")
 
 
     # График RSI
@@ -44,7 +49,7 @@ def create_and_save_plot(data, ticker, period, filename=None):
     logging.info(f"График RSI сохранен как {ticker}_{period}_RSI_chart.png")
 
     # График MACD
-    plt.figure(figsize=(10, 6))
+#    plt.figure(figsize=(10, 6))
     plt.plot(data.index, data['MACD'], label='MACD', color='blue')
     plt.plot(data.index, data['Signal'], label='Signal Line', color='orange')
     plt.title(f"MACD для {ticker}")
@@ -54,10 +59,22 @@ def create_and_save_plot(data, ticker, period, filename=None):
     plt.savefig(f"./static/{ticker}_{period}_MACD.png")
     logging.info(f"График MACD сохранен как {ticker}_{period}_MACD_chart.png")
 
+#    plt.figure(figsize=(10, 6))
+    plt.plot(data.index, data['close'], label='Close Price')
+    plt.fill_between(data.index,
+                     data['close'] - data['Std_Dev'],
+                     data['close'] + data['Std_Dev'],
+                     color='gray', alpha=0.3, label='Std Dev')
+    plt.title(f"Стандартное отклонение для {ticker}")
+    plt.xlabel("Дата")
+    plt.ylabel("Цена")
+    plt.legend()
+    plt.savefig(f"./static/{ticker}_{period}_std_dev_chart.png")
+    logging.info(f"График стандартного отклонения сохранен как {ticker}_{period}_std_dev_chart.png")
+
 
 def export_data_to_csv(data, filename):
     """
-
     :param data: Принимает на вход DataFraim
     :param filename: имя для записи файла
     :return: Создает csv файл с БД, созданной в результате работы программы
@@ -65,3 +82,12 @@ def export_data_to_csv(data, filename):
     logging.info(f"Таблица сохраена как {filename}.csv")
     return data.to_csv(f'./static/{filename}.csv')
 
+# def export_data_to_html(data, filename):
+#     """
+#     :param data: Принимает на вход DataFraim
+#     :param filename: имя для записи файла
+#     :return: Создает html файл с БД, созданной в результате работы программы
+#     """
+#     frame = pd.DataFrame(np.arange(4).reshape(2, 2))
+#     logging.info(f"Таблица сохраена как {filename}.html")
+#     return frame.to_html(f'./static/{filename}.html')
