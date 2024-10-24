@@ -21,7 +21,7 @@ def get_input_page( request: Request):
 @router.post("/postdata")
 def postdata(request: Request,ticker=Form(), period = Form(), start_date= Form()):
     main(ticker, period, start_date)
-    MCAD = f"/static/{ticker}_{period}_MACD.png"
+    MACD = f"/static/{ticker}_{period}_MACD.png"
     RSI = f"/static/{ticker}_{period}_RSI.png"
     STD = f"/static/{ticker}_{period}_std_dev_chart.png"
     SPC = f"/static/{ticker}_{period}_stock_price_chart.png"
@@ -39,7 +39,7 @@ def postdata(request: Request,ticker=Form(), period = Form(), start_date= Form()
 
 
     content = {"request": request, 'RSI': RSI,
-               'MCAD': MCAD, 'info_': info_, 'STD': STD, 'SPC': SPC,
+               'MACD': MACD, 'info_': info_, 'STD': STD, 'SPC': SPC,
                'period': period, 'interval': interval,
                }
 

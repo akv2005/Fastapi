@@ -26,7 +26,7 @@ def create_and_save_plot(data, ticker, period, filename=None):
         plt.plot(data['begin'], data['Moving_Average'], label='Moving Average')
 
     plt.title(f"{ticker} Цена акций с течением времени")
-    plt.xlabel(f"Начальная дата {st_data}")
+    plt.xlabel("Дата")
     plt.ylabel("Цена")
     plt.legend()
     plt.tight_layout()
@@ -42,7 +42,7 @@ def create_and_save_plot(data, ticker, period, filename=None):
     plt.axhline(70, linestyle='--', alpha=0.5, color='red')
     plt.axhline(30, linestyle='--', alpha=0.5, color='green')
     plt.title(f"RSI для {ticker}")
-    plt.xlabel(("Дата"))
+    plt.xlabel("Дата")
     plt.ylabel("RSI")
     plt.legend()
     plt.savefig(f"./static/{ticker}_{period}_RSI.png")
